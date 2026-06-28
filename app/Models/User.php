@@ -42,9 +42,44 @@ class User
     
     public function all()
     {
-        $query = "SELECT * FROM {$this->table}";
+        $query = "SELECT * FROM {$this->table} ORDER BY created_at DESC";
         $result = $this->connection->query($query);
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    
+    public function create($data)
+    {
+        $query = "INSERT INTO {$this->table} (username, email, password, name, role, school_id) 
+                  VALUES (?, ?, ?, ?, ?, ?)";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param(
+            'sssssi',
+            $data['username'],
+            $data['email'],
+            $data['password'],
+            $data['name'],
+            $data['role'],
+            $data['school_id']
+        );
+        
+        return $stmt->execute();
+    }
+    
+    public function update($id, $data)
+    {
+        $query = "UPDATE {$this->table} SET name = ?, email = ?, is_active = ? WHERE id = ?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param(
+            'ssii',
+            $data['name'],
+            $data['email'],
+            $data['is_active'],
+            $id
+        );
+        
+        return $stmt->execute();
     }
     
     protected function getConnection()
