@@ -1,0 +1,262 @@
+<?php
+// API Documentation
+?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - SIMPEL-Alkhairaat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .endpoint {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        .method {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .method.get {
+            background-color: #3498db;
+        }
+        .method.post {
+            background-color: #2ecc71;
+        }
+        .method.put {
+            background-color: #f39c12;
+        }
+        .method.delete {
+            background-color: #e74c3c;
+        }
+        .endpoint-path {
+            font-family: 'Courier New', monospace;
+            background-color: #f9f9f9;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            font-size: 14px;
+        }
+        .description {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        .example {
+            background-color: #f9f9f9;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        h3 {
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>SIMPEL-Alkhairaat API Documentation</h1>
+            <p>Dokumentasi lengkap untuk API REST</p>
+        </div>
+
+        <h2>🔐 Authentication</h2>
+        <p>Semua endpoint memerlukan user session. Login terlebih dahulu sebelum menggunakan API.</p>
+
+        <h2>📚 School Endpoints</h2>
+
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <div class="endpoint-path">/api/schools</div>
+            <div class="description">Dapatkan daftar semua sekolah</div>
+            <h3>Response:</h3>
+            <div class="example">{
+  "status": 200,
+  "message": "Schools retrieved successfully",
+  "data": [...]
+}</div>
+        </div>
+
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <div class="endpoint-path">/api/schools/:id</div>
+            <div class="description">Dapatkan detail sekolah berdasarkan ID</div>
+            <h3>Response:</h3>
+            <div class="example">{
+  "status": 200,
+  "message": "School retrieved successfully",
+  "data": {...}
+}</div>
+        </div>
+
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <div class="endpoint-path">/api/schools</div>
+            <div class="description">Buat sekolah baru</div>
+            <h3>Request Body:</h3>
+            <div class="example">{
+  "name": "SMA Alkhairaat",
+  "npsn": "20301234",
+  "district_id": 1,
+  "address": "Jl. Pendidikan No. 123",
+  "phone": "0812345678",
+  "email": "info@alkhairaat.sch.id",
+  "principal_name": "Drs. Ahmad",
+  "total_students": 500,
+  "total_teachers": 50,
+  "founded_year": 2010
+}</div>
+        </div>
+
+        <h2>💰 Financial Endpoints</h2>
+
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <div class="endpoint-path">/api/financial/schools/:id</div>
+            <div class="description">Dapatkan daftar laporan keuangan sekolah</div>
+        </div>
+
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <div class="endpoint-path">/api/financial/:id</div>
+            <div class="description">Dapatkan detail laporan keuangan lengkap dengan transaksi</div>
+        </div>
+
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <div class="endpoint-path">/api/financial</div>
+            <div class="description">Buat laporan keuangan baru</div>
+            <h3>Request Body:</h3>
+            <div class="example">{
+  "school_id": 1,
+  "report_date": "2024-01-31",
+  "opening_balance": 5000000,
+  "closing_balance": 7500000
+}</div>
+        </div>
+
+        <h2>📊 Error Responses</h2>
+
+        <div class="endpoint">
+            <div class="description">
+                <strong>400 Bad Request</strong> - Request tidak valid atau parameter kurang
+            </div>
+            <div class="example">{
+  "status": 400,
+  "message": "Missing required fields",
+  "data": []
+}</div>
+        </div>
+
+        <div class="endpoint">
+            <div class="description">
+                <strong>401 Unauthorized</strong> - User belum login atau session expired
+            </div>
+            <div class="example">{
+  "status": 401,
+  "message": "Unauthorized",
+  "data": []
+}</div>
+        </div>
+
+        <div class="endpoint">
+            <div class="description">
+                <strong>404 Not Found</strong> - Resource tidak ditemukan
+            </div>
+            <div class="example">{
+  "status": 404,
+  "message": "School not found",
+  "data": []
+}</div>
+        </div>
+
+        <div class="endpoint">
+            <div class="description">
+                <strong>500 Internal Server Error</strong> - Error pada server
+            </div>
+            <div class="example">{
+  "status": 500,
+  "message": "Internal server error",
+  "data": []
+}</div>
+        </div>
+
+        <h2>📝 Usage Examples</h2>
+
+        <div class="endpoint">
+            <h3>JavaScript Fetch</h3>
+            <div class="example">// Get schools
+fetch('/api/schools')
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+// Create school
+fetch('/api/schools', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'New School',
+    npsn: '123456',
+    district_id: 1
+  })
+})
+  .then(res => res.json())
+  .then(data => console.log(data));</div>
+        </div>
+    </div>
+</body>
+</html>
