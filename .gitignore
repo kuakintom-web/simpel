@@ -1,0 +1,36 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+vendor/
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Storage
+storage/
+temp/
+
+# Cache
+.cache/
+*.cache
+
+# Database
+*.sql
+!database/simpel_alkhairaat.sql
+
+# Uploads
+public/uploads/
+uploads/
